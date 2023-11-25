@@ -2,11 +2,11 @@
 include '../config.php';
 include '../Model/Artist.php';
 
-class ArtistC
+class ArticleC
 {
-    public function listArtists()
+    public function listArticles()
     {
-        $sql = "SELECT * FROM artiste";
+        $sql = "SELECT * FROM articles";
         $db = config::getConnexion();
         try {
             $liste = $db->query($sql);
@@ -16,9 +16,9 @@ class ArtistC
         }
     }
 
-    function deleteArtist($id)
+    function deleteArticle($id)
     {
-        $sql = "DELETE FROM artiste WHERE Id = :id";
+        $sql = "DELETE FROM articles WHERE id = :id";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
         $req->bindValue(':id', $id);
@@ -30,42 +30,42 @@ class ArtistC
         }
     }
 
-    function addArtist($artist)
+    function addArticles($artist)
     {
-        $sql = "INSERT INTO artiste  
+        $sql = "INSERT INTO articles
         VALUES (NULL, :fn,:ln, :ad,:ds)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute([
-                'fn' => $artist->getPrénom_artiste(),
-                'ln' => $artist->getNom_artiste(),
-                'ad' => $artist->getAdresse_artiste(),
-                'ds' => $artist->getDescription()
+                'fn' => $artist->getNomArticle(),
+                'ln' => $artist->getEtatArticle(),
+                'ds' => $artist->getDescription(),
+                'ad' => $artist->getDate()
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
         }
     }
 
-    function updateArtist($artist, $id)
+    function updatearticle($article, $id)
     {
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
-                'UPDATE artiste SET 
-                    Prénom_artiste = :Prénom_artiste, 
-                    Nom_artiste = :Nom_artiste, 
-                    Adresse_artiste = :Adresse_artiste, 
-                    Description = :Description
-                WHERE Id= :id'
+                'UPDATE articles SET 
+                    name = :name,
+                    state =:state, 
+                    date= :date, 
+                    artiste = :artiste, 
+                WHERE id= :id'
             );
             $query->execute([
-                'Id' => $id,
-                'Prénom_artiste' => $artist->getPrénom_artiste(),
-                'Nom_artiste' => $artist->getNom_artiste(),
-                'Adresse_artiste' => $artist->getAdresse_artiste(),
-                'Description' => $artist->getDescription()
+                'id' => $id,
+                'fn' => $artist->getNomArticle(),
+                'ln' => $artist->getEtatArticle(),
+                'ds' => $artist->getDescription(),
+                'ad' => $artist->getDate()
             ]);
             echo $query->rowCount() . " recorDescription UPDATED successfully <br>";
         } catch (PDOException $e) {
@@ -73,9 +73,9 @@ class ArtistC
         }
     }
 
-    function showartist($id)
+    function showarticle($id)
     {
-        $sql = "SELECT * from artiste where Id = $id";
+        $sql = "SELECT * from articles where id = $id";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);

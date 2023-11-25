@@ -17,32 +17,30 @@ $list = $ArtistC->listArtists();
     </center>
     <table border="1" align="center" width="70%">
         <tr>
-            <th>Id Artiste</th>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Description</th>
-            <th>Adresse</th>
+            <th>Id </th>
+            <th>nom</th>
+            <th>date</th>
+            <th>artiste</th>
             <th>Update</th>
             <th>Delete</th>
         </tr>
         <?php
-        foreach ($list as $artist) {
+        foreach ($list as $articles) {
         ?>
             <tr>
-                <td><?= $artist['Id']; ?></td>
-                <td><?= $artist['Prénom_artiste']; ?></td>
-                <td><?= $artist['Nom_artiste']; ?></td>
-                <td><?= $artist['Description']; ?></td>
-                <td><?= $artist['Adresse_artiste']; ?></td>
+                <td><?= $artist['id']; ?></td>
+                <td><?= $artist['nom']; ?></td>
+                <td><?= $artist['date']; ?></td>
+                <td><?= $artist['artiste']; ?></td>
                
                 <td align="center">
                     <form method="POST" action="UpdateArtist.php">
                         <input type="submit" name="update" value="Update">
-                        <input type="hidden" value=<?PHP echo $artist['Id']; ?> name="Id">
+                        <input type="hidden" value=<?PHP echo $articles['id']; ?> name="id">
                     </form>
                 </td>
                 <td>
-                    <a href="DeleteArtist.php?Id=<?php echo $artist['Id']; ?>">Delete</a>
+                    <a href="DeleteArtist.php?Id=<?php echo $articles['id']; ?>">Delete</a>
                 </td>
             </tr>
         <?php

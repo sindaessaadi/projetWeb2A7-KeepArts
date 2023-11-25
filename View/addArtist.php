@@ -10,25 +10,22 @@ $Artist = null;
 // create an instance of the controller
 $ArtistC = new ArtistC();
 if (
-    isset($_POST["Prénom_artiste"]) &&
-    isset($_POST["Nom_artiste"]) &&
-    isset($_POST["Adresse_artiste"]) &&
-    isset($_POST["Description"])
+    isset($_POST["nom"]) &&
+    isset($_POST["date"]) &&
+    isset($_POST["artiste"]) 
 ) {
     if (
-        !empty($_POST['Prénom_artiste']) &&
-        !empty($_POST["Nom_artiste"]) &&
-        !empty($_POST["Adresse_artiste"]) &&
-        !empty($_POST["Description"])
+        !empty($_POST['nom']) &&
+        !empty($_POST["date"]) &&
+        !empty($_POST["artiste"]) &&
     ) {
         $Artist = new Artist(
             
-            $_POST['Prénom_artiste'],
-            $_POST['Nom_artiste'],
-            $_POST['Addresse_artiste'],
-            $_POST['Description']
+            $_POST['nom'],
+            $_POST['date'],
+            $_POST['artiste'],
         );
-        $ArtistC->addArtist($Artist);
+        $ArtistC->addArtist($articles);
         header('Location:ListArtists.php');
     } else
         $error = "Missing information";
@@ -57,17 +54,17 @@ if (
 
             <tr>
                 <td>
-                    <label for="Prénom_artiste">Prénom:
+                    <label for="nom">Prénom:
                     </label>
                 </td>
-                <td><input type="text" name="Prénom_artiste" id="Prénom_artiste" maxlength="10"></td>
+                <td><input type="text" name="nom" id="nom" maxlength="10"></td>
             </tr>
             <tr>
                 <td>
-                    <label for="Nom_artiste">Nom:
+                    <label for="date">Nom:
                     </label>
                 </td>
-                <td><input type="text" name="Nom_artiste" id="Nom_artiste" maxlength="15"></td>
+                <td><input type="text" name="date" id="date" maxlength="15"></td>
             </tr>
             <tr>
                 <td>

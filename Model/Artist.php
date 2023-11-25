@@ -1,19 +1,17 @@
 <?php
 class Artist
 {
-    private ?int $Id = null;
-    private ?string $Prénom_artiste = null;
-    private ?string $Nom_artiste = null;
-    private ?string $Adresse_artiste = null;
-    private ?string $Description = null;
+
+    private ?string $nom = null;
+    private ?date $date = null;
+    private ?string $artiste = null;
+    private ?int $id = null;
 
     public function __construct( $n, $p, $a, $d)
     {
-        //$this->Id = $id;
-        $this->Prénom_artiste = $n;
-        $this->Nom_artiste = $p;
-        $this->Adresse_artiste = $a;
-        $this->Description = $d;
+        $this->nom = $n;
+        $this->date = $p;
+        $this->artiste = $a;
     }
 
     /**
@@ -21,7 +19,7 @@ class Artist
      */
     public function getId()
     {
-        return $this->Id;
+        return $this->id;
     }
 
     /**
@@ -29,7 +27,7 @@ class Artist
      */
     public function getPrénom_artiste()
     {
-        return $this->Prénom_artiste;
+        return $this->nom;
     }
 
     /**
@@ -37,9 +35,9 @@ class Artist
      *
      * @return  self
      */
-    public function setPrénom_artiste($Prénom_artiste)
+    public function setPrénom_artiste($nom)
     {
-        $this->Prénom_artiste = $Prénom_artiste;
+        $this->nom = $nom;
 
         return $this;
     }
@@ -49,7 +47,7 @@ class Artist
      */
     public function getNom_artiste()
     {
-        return $this->Nom_artiste;
+        return $this->date;
     }
 
     /**
@@ -57,9 +55,9 @@ class Artist
      *
      * @return  self
      */
-    public function setNom_artiste($Nom_artiste)
+    public function setNom_artiste($date)
     {
-        $this->Nom_artiste = $Nom_artiste;
+        $this->date = $date;
 
         return $this;
     }
@@ -69,7 +67,7 @@ class Artist
      */
     public function getAdresse_artiste()
     {
-        return $this->Adresse_artiste;
+        return $this->artiste;
     }
 
     /**
@@ -77,29 +75,9 @@ class Artist
      *
      * @return  self
      */
-    public function setAdresse_artiste($Adresse_artiste)
+    public function setAdresse_artiste($artiste)
     {
-        $this->Adresse_artiste = $Adresse_artiste;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of Description
-     */
-    public function getDescription()
-    {
-        return $this->Description;
-    }
-
-    /**
-     * Set the value of Description
-     *
-     * @return  self
-     */
-    public function setDescription($Description)
-    {
-        $this->Description = $Description;
+        $this->artiste = $artiste;
 
         return $this;
     }

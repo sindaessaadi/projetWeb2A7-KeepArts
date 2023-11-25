@@ -1,5 +1,5 @@
 <?php
 include '../Controller/ArtistC.php';
-$artist = new ArtistC();
-$artist->DeleteArtist($_GET["Id"]);
+$artcles = new articles();
+$articles->DeleteArtist($_GET["Id"]);
 header('Location:ListArtists.php');

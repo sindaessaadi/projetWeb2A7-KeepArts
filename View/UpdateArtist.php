@@ -10,25 +10,22 @@ $artist = null;
 // create an instance of the controller
 $artistC = new artistC();
 if (
-    isset($_POST["Prénom_artiste"]) &&
-    isset($_POST["Nom_artiste"]) &&
-    isset($_POST["Description"]) &&
-    isset($_POST["Adresse_artiste"])
+    isset($_POST["nom"]) &&
+    isset($_POST["date"]) &&
+    isset($_POST["artiste"]) &&
 ) {
     if (
-        !empty($_POST['Prénom_artiste']) &&
-        !empty($_POST["Nom_artiste"]) &&
-        !empty($_POST["Description"]) &&
-        !empty($_POST["Adresse_artiste"])
+        !empty($_POST['nom']) &&
+        !empty($_POST["date"]) &&
+        !empty($_POST["artiste"]) &&
     ) {
         $artist = new artist(
            // $_POST['idartist$artist'],
-            $_POST['Prénom_artiste'],
-            $_POST['Nom_artiste'],
-            $_POST['Description'],
-            $_POST['Adresse_artiste']
+            $_POST['nom'],
+            $_POST['date'],
+            $_POST['artiste'],
         );
-        $artistC->updateArtist($artist, $_POST["Id"]);
+        $articlesC->updateArtist($articles, $_POST["id"]);
         header('Location:ListArtists.php');
     } else
         $error = "Missing information";
@@ -51,8 +48,8 @@ if (
     </div>
 
     <?php
-    if (isset($_POST['Id'])) {
-        $artist = $artistC->showartist($_POST['Id']);
+    if (isset($_POST['id'])) {
+        $artist = $articlesC->showartist($_POST['id']);
 
     ?>
 
@@ -60,43 +57,34 @@ if (
             <table border="1" align="center">
                 <tr>
                     <td>
-                        <label for="Id">Id_artist:
+                        <label for="id">Id_artist:
                         </label>
                     </td>
                     <td><input type="text" name="Id" id="Id" value="<?php echo $artist['Id']; ?>" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="Prénom_artiste">Prenom:
+                        <label for="nom">nom:
                         </label>
                     </td>
-                    <td><input type="text" name="Prénom_artiste" id="Prénom_artiste" value="<?php echo $artist['Prénom_artiste']; ?>" maxlength="20"></td>
+                    <td><input type="text" name="nom" id="nom" value="<?php echo $artist['nom']; ?>" maxlength="20"></td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="Nom_artiste">Nom:
+                        <label for="date">Nom:
                         </label>
                     </td>
-                    <td><input type="text" name="Nom_artiste" id="Nom_artiste" value="<?php echo $artist['Nom_artiste']; ?>" maxlength="20"></td>
+                    <td><input type="text" name="date" id="date" value="<?php echo $artist['date']; ?>" maxlength="20"></td>
                 </tr>
                 <tr>
                 <td>
-                        <label for="Description">Description:
+                        <label for="artiste">artiste:
                         </label>
                     </td>
                     <td>
-                        <input type="text" name="Description" id="Description" value="<?php echo $artist['Description']; ?>">
+                        <input type="text" name="artiste" id="artiste" value="<?php echo $artist['artiste']; ?>">
                     </td>
                    
-                </tr>
-                <tr>
-                <td>
-                        <label for="Adresse_artiste">Address:
-                        </label>
-                    </td>
-                    <td>
-                        <input type="text" name="Adresse_artiste" value="<?php echo $artist['Adresse_artiste']; ?>" id="Adresse_artiste">
-                    </td>
                 </tr>
                 <tr>
                     <td></td>
