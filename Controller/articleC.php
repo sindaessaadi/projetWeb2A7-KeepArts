@@ -80,18 +80,6 @@ class articleC
                 die("erreur" . $e->getMessage());
                 }
                 }
-        
-                public static function deletearticle($id){
-                    $sql="DELETE FROM articles where id=?";
-                    $db=config::getConnexion();
-                    try{
-                        $liste=$db->prepare($sql);
-                        $liste->execute(array('id'=>$id));
-                        }catch(exception $e){
-                            die("Erreur de suppression :".$e->getMessage());
-                            }
-                            }
-                            }
 
     function showarticle($id)
     {
@@ -104,4 +92,3 @@ class articleC
                 die("erreur" . $e->getMessage());
                 } 
                 }
-                
