@@ -43,7 +43,7 @@ class articleC
                 'fn' => $article->getnom_article(),
                 'ln' => $article->getdate(),
                 'ds' => $article->getArtiste(),
-                'ad' => $article->getType()
+                'ad' => $article->getType(),
                 'st' => $article->getStatus()  
             ]);
         } catch (Exception $e) {
@@ -63,7 +63,7 @@ class articleC
                 'fn' => $article->getnom_article(),
                 'ln' => $article->getdate(),
                 'ds' => $article->getArtiste(),
-                'ad' => $article->getType()
+                'ad' => $article->getType(),
                 'st' => $article->getStatus()
                 ));
 
@@ -73,13 +73,13 @@ class articleC
                 'fn' => $article->getnom_article(),
                 'ln' => $article->getdate(),
                 'ds' => $article->getArtiste(),
-                'ad' => $article->getType()
+                'ad' => $article->getType(),
                 'st' => $article->getStatus()
             ]);
-            } catch (PDOException $e) {
-                die("erreur" . $e->getMessage());
-                }
-                }
+        } catch (PDOException $e) {
+            die("erreur" . $e->getMessage());
+        }
+    }
 
     function showarticle($id)
     {
@@ -88,7 +88,8 @@ class articleC
         try {
             $liste = $db->query($sql);
             return $liste;
-            } catch (PDOException $e) {
-                die("erreur" . $e->getMessage());
-                } 
-                }
+        } catch (PDOException $e) {
+            die("erreur" . $e->getMessage());
+        } 
+    }
+}
