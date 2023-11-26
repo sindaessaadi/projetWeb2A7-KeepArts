@@ -2,14 +2,14 @@
 
 include '../Controller/articleC.php';
 
-$error = "";
+$error = "erreur";
 
 // create article
 
 $article = null;
 
 // create an instance of the controller
-$ArticleC = new ArticleC();
+$articleC = new articleC();
 if (
     isset($_POST["nom"]) &&
     isset($_POST["artiste"])&&
@@ -91,7 +91,7 @@ if (
                     </label>
                 </td>
                 <td>
-                    <input type="bool" name="status" id="status">
+                    <input type="checkbox" name="status" id="status">
                 </td>
                 </tr>
                 <tr>
@@ -104,13 +104,16 @@ if (
             <tr align="center">
                 <td>
 
+
                     <input type="submit" value="Save">
+
+                    
 
                 </td>
                 <td>
 
                     <input type="reset" value="Reset">
-                    
+
                 </td>
             </tr>
         </table>
