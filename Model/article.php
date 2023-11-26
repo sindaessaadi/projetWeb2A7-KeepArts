@@ -13,7 +13,7 @@ class Article
 
     public function __construct($n, $a, $t, $d, $s)
     {
-        $this->nom = $n;
+        $this->nom = intval($n);
         $this->artiste = intval($a);
         $this->type = $t;
         $this->date = DateTime::createFromFormat($this->format, $d);
@@ -37,7 +37,7 @@ class Article
         
     }
 
-    public function getArtiste(): int
+    public function getArtiste(): string
     {
         return $this->artiste;
     }
