@@ -8,6 +8,7 @@ class Article
     private ?string $type = null;
     private $date = null;
     private ?bool $status = null;
+    private $format = 'Y-m-d';
 
 
     public function __construct($n, $a, $t, $d, $s)
@@ -15,7 +16,7 @@ class Article
         $this->nom = intval($n);
         $this->artiste = intval($a);
         $this->type = $t;
-        $this->date = new DateTime($d);
+        $this->date = DateTime::createFromFormat($this->format, $d);
         $this->status = boolval($s);
     }
 
