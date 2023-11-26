@@ -25,11 +25,10 @@ if (
         !empty($_POST['date']) &&
         !empty($_POST['status']
         )) {
-            $article = new Article(null, $_POST['nom'],$_POST['artiste'],$_POST['type'],$_POST['
-            date'],$_POST['status']);
+            $article = new Article(null, $_POST['nom'],$_POST['artiste'],$_POST['type'],$_POST['date'],$_POST['status']);
             // call the add method from the controller to save data in database
-            $resultat=$ArticleC->add($article);
-            header("location: ../View/ListArticle.php");
+            $resultat=$articleC->addArticles($article);
+            //header("location: ../View/ListArticle.php");
             } else{
                 echo "Veuillez remplir tous les champs";
                 }             
@@ -47,7 +46,7 @@ if (
     <hr>
 
     <div id="error">
-        <?php echo $error; ?>
+        <?php echo $resultat; ?>
     </div>
 
     <form action="" method="POST">

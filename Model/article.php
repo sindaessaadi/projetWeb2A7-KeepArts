@@ -8,15 +8,16 @@ class Article
     private ?string $type = null;
     private $date = null;
     private ?bool $status = null;
+    private $format = 'd-m-Y';
 
 
     public function __construct($n, $a, $t, $d, $s)
     {
         $this->nom = $n;
-        $this->artiste = $a;
+        $this->artiste = intval($a);
         $this->type = $t;
-        $this->date = new DateTime($d);
-        $this->status = $s;
+        $this->date = DateTime::createFromFormat($this->format, $d);
+        $this->status = boolval($s);
     }
 
     public function getId()
@@ -36,7 +37,7 @@ class Article
         
     }
 
-    public function getArtiste(): string
+    public function getArtiste(): int
     {
         return $this->artiste;
     }

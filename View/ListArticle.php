@@ -1,7 +1,7 @@
 <?php
 include '../Controller/articleC.php';
-$article = new articleC();
-$list = $ArticleC->ListArticle();
+$articleC = new articleC();
+$list = $articleC->listArticles();
 ?>
 <html>
 
@@ -44,7 +44,7 @@ $list = $ArticleC->ListArticle();
                 <td><?= $article['artiste']; ?></td>
                 <td><?= $article['type']; ?></td>
                 <td><?= $article['date']; ?></td>
-                <td><?= $article['etat']; ?></td>
+                <td><?= $article['status']; ?></td>
                 <td>                         
                 <td align="center">
                     <form method="POST" action="UpdateArticle.php">

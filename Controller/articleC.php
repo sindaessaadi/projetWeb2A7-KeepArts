@@ -34,14 +34,14 @@ class articleC
     function addArticles($article)
     {
         $sql = "INSERT INTO articles
-        VALUES (NULL, :id,:fn,:ln, :ad,:ds,:st)";
+        (nom,artiste,type,date,status)
+        VALUES (:fn,:ds,:ad,:ln,:st)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute([
-                'id' => $article->getId(),
-                'fn' => $article->getnom_article(),
-                'ln' => $article->getdate(),
+                'fn' => $article->getArticleName(),
+                'ln' => $article->getDate(),
                 'ds' => $article->getArtiste(),
                 'ad' => $article->getType(),
                 'st' => $article->getStatus()  
@@ -53,8 +53,7 @@ class articleC
 
     function updatearticle($article, $id)
     {
-        $sql = "UPDATE articles SET fn=:fn , ln=:ln, ad=:ad, st=:st WHERE id
-        =:id";
+        $sql = "UPDATE articles SET fn=:fn , ln=:ln, ad=:ad, st=:st WHERE id=:id";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
