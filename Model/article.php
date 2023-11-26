@@ -8,7 +8,7 @@ class Article
     private ?string $type = null;
     private $date = null;
     private ?bool $status = null;
-    private $format = 'Y-m-d';
+    private $format = 'd-m-Y';
 
 
     public function __construct($n, $a, $t, $d, $s)
