@@ -12,11 +12,11 @@ class Article
 
     public function __construct($n, $a, $t, $d, $s)
     {
-        $this->nom = $n;
-        $this->artiste = $a;
+        $this->nom = intval($n);
+        $this->artiste = intval($a);
         $this->type = $t;
         $this->date = new DateTime($d);
-        $this->status = $s;
+        $this->status = boolval($s);
     }
 
     public function getId()
