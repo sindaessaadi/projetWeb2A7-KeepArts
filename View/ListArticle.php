@@ -4,8 +4,7 @@ $articleC = new articleC();
 $list = $articleC->listArticles();
 ?>
 <html>
-
-
+    
 <head>
     <title>Liste des articles</title>
     <!-- Required meta tags -->
