@@ -1,6 +1,4 @@
 <?php
-
-include '../doc/index.php';
 include '../Controller/articleC.php';
 
 $error = "erreur";
@@ -52,8 +50,6 @@ if (
 
 <body>
     <a href="ListArticle.php">Back to list </a>
-    <?php include '../doc/index.php'; ?>
-
     <h2>Add Article</h2>
     <hr>
     <form action="" method="POST">
