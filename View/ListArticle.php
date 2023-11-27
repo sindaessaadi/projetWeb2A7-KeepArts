@@ -3,7 +3,6 @@ include '../Controller/articleC.php';
 $articleC = new articleC();
 $list = $articleC->listArticles();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,9 +92,10 @@ $list = $articleC->listArticles();
                 <th>type</th>
                 <th>date</th>
                 <th>Etat</th>
+                <th>Actions</th>
                 <th>Rating</th>
-                <th>Mettre à jour</th>
-                <th>Supprimer</th>
+
+
             </tr>
             <?php foreach ($list as $article) : ?>
                 <tr>
@@ -105,15 +105,9 @@ $list = $articleC->listArticles();
                     <td><?= $article['type']; ?></td>
                     <td><?= $article['date']; ?></td>
                     <td><?= $article['status']; ?></td>
-                    <td><?= getArticleRating($article['id']); ?></td>
                     <td>
                         <a href="UpdateArticle.php?id=<?= $article['id'] ?>">Update</a>
-                    </td>
-                    <td>
-                        <form method="POST" action="DeleteArticle.php">
-                            <input type="hidden" name="id" value="<?= $article['id'] ?>">
-                            <button type="submit">Delete</button>
-                        </form>
+                        <a href="DeleteArticle.php?id=<?= $article['id'] ?>">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -124,16 +118,8 @@ $list = $articleC->listArticles();
         © 2023 All Rights Reserved By Fatma Ben Mlouka!
     </footer>
 
+    <!-- Add your JavaScript scripts or include Bootstrap JS here -->
 
 </body>
 
 </html>
-
-<?php
-function getArticleRating($articleId)
-{
-
-
-    return "4.5"; 
-}
-?>

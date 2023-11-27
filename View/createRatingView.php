@@ -46,15 +46,29 @@
             cursor: pointer;
         }
     </style>
+    <script>
+        function validateComment() {
+            var comment = document.getElementById('comment').value.toLowerCase();
+            var blockedWords = ["horrendous", "ugly", "bad", "hate","delete","ew","disgusting"];
+
+            for (var i = 0; i < blockedWords.length; i++) {
+                if (comment.includes(blockedWords[i])) {
+                    alert('Comments containing the word "' + blockedWords[i] + '" are not allowed.');
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
 </head>
 
 <body>
     <h2>Display Ratings</h2>
 
-    <form action="displayRating.php" method="post">
+    <form action="displayRating.php" method="post" onsubmit="return validateComment()">
         Article ID: <input type="text" name="article_id" required><br>
         Rating: <input type="text" name="rating" required><br>
-        Comment:<input type="text" name="msg" required><br>
+        Comment: <input type="text" name="msg" id="comment" required><br>
         <input type="submit" value="Rate">
     </form>
 </body>

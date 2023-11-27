@@ -110,7 +110,7 @@ if (
 
     <nav>
         <a href="addArticle.php">Ajouter un article</a>
-        <!-- Add more navigation links as needed -->
+        
     </nav>
 
     <main>
