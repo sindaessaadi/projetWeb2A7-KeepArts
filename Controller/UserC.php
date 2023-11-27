@@ -23,14 +23,34 @@ public function addUser($person)
     $db=config::getConnexion();
     try{
         $req = $db->prepare('
-        INSERT INTO user VALUES (:id, :n, :p, :a,:b)
+        INSERT INTO user VALUES (:id, :n, :p, :address,:pwd,:role)
         ');
         $req->execute([
             'id'=>$person->getId(),
             'n'=> $person->getNom(),
             'p'=> $person->getPrenom(),
-            'a' =>$person->getAddress(),
-            'b' =>$person->getRole()
+            'address' =>$person->getAddress(),
+            'pwd' =>$person->getPwd(),
+            'role' =>$person->getRole()
+        ]);
+    } catch (Exception $e) {
+        die('Error: ' . $e->getMessage());
+    }
+}
+public function Signup($person)
+{
+    $db=config::getConnexion();
+    try{
+        $req = $db->prepare('
+        INSERT INTO user VALUES (:id, :n, :p, :address,:pwd,:role)
+        ');
+        $req->execute([
+            'id'=>$person->getId(),
+            'n'=> $person->getNom(),
+            'p'=> $person->getPrenom(),
+            'address' =>$person->getAddress(),
+            'pwd' =>$person->getPwd(),
+            'role' =>$person->getRole()
         ]);
     } catch (Exception $e) {
         die('Error: ' . $e->getMessage());
@@ -56,13 +76,14 @@ public function updateUser($user)
     try {
         $id = $user->getId();
         $req = $db->prepare('
-        UPDATE user SET   Nom=:n, Prenom=:p, Address=:a, Role=:b WHERE Id=:id
+        UPDATE user SET   Nom=:n, Prenom=:p, Address=:a, pwd=:pw, Role=:b WHERE Id=:id
         ');
         $req->execute([
             'id' => $user->getId(),
             'n' => $user->getNom(),
             'p' => $user->getPrenom(),
             'a' => $user->getAddress() ,
+            'pw' =>$user->getPwd(),
             'b' =>$user->getRole()
         ]);
     } catch (Exception $e) {
