@@ -26,69 +26,60 @@ class articleC
         try {
             $req->execute();
         } catch (Exception $e) {
-            
+
             die('Error:' . $e->getMessage());
         }
     }
 
-    function addArticles($article)
+    function addArticles(Article $article)
     {
-        $sql = "INSERT INTO articles
-        (nom,artiste,type,date,status)
-        VALUES (:fn,:ds,:ad,:ln,:st)";
+        $sql = "INSERT INTO articles (nom, type, date, status, artiste) VALUES (:nom, :type, :date, :status, :artiste)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute([
-                'fn' => $article->getArticleName(),
-                'ln' => $article->getDate(),
-                'ds' => $article->getArtiste(),
-                'ad' => $article->getType(),
-                'st' => $article->getStatus()  
+                'nom' => $article->getNom(),
+                'type' => $article->getType(),
+                'date' => $article->getdate(),
+                'status' => $article->isStatus(),
+                'artiste' => $article->getArtiste()
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
         }
+
     }
 
-    function updatearticle($article, $id)
+    function updatearticle(Article $article, $id)
     {
-        $sql = "UPDATE articles SET fn=:fn , ln=:ln, ad=:ad, st=:st WHERE id=:id";
+        $sql = "UPDATE articles SET nom=:nom, type=:type, date=:date, status=:status, artiste=:artiste WHERE id=:id";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
-            $query->execute(array(
-                'id' => $id,
-                'fn' => $article->getnom_article(),
-                'ln' => $article->getdate(),
-                'ds' => $article->getArtiste(),
-                'ad' => $article->getType(),
-                'st' => $article->getStatus()
-                ));
-
-
             $query->execute([
                 'id' => $id,
-                'fn' => $article->getnom_article(),
-                'ln' => $article->getdate(),
-                'ds' => $article->getArtiste(),
-                'ad' => $article->getType(),
-                'st' => $article->getStatus()
+                'nom' => $article->getNom(),
+                'type' => $article->getType(),
+                'date' => $article->getdate(),
+                'status' => $article->isStatus(),
+                'artiste' => $article->getArtiste()
             ]);
         } catch (PDOException $e) {
-            die("erreur" . $e->getMessage());
+            die("Error: " . $e->getMessage());
         }
     }
 
     function showarticle($id)
     {
-        $sql = "SELECT * from articles where id = $id";
+        $sql = "SELECT * FROM articles WHERE id = $id";
         $db = config::getConnexion();
         try {
-            $liste = $db->query($sql);
-            return $liste;
+            $query = $db->prepare($sql);
+            $query->execute();
+            $article = $query->fetch();
+            return $article;
         } catch (PDOException $e) {
-            die("erreur" . $e->getMessage());
-        } 
+            die("Error: " . $e->getMessage());
+        }
     }
 }

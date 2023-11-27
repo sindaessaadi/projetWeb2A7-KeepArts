@@ -1,54 +1,83 @@
 <?php
+
 class Article
 {
+    private int $id;
+    private string $nom;
+    private int $artiste;
+    private string $type;
+    private string $date;
+    private bool $status;
 
-    private ?int $id = null;
-    private ?string $nom = null;
-    private ?int $artiste = null;
-    private ?string $type = null;
-    private $date = null;
-    private ?bool $status = null;
-    private $format = 'd-m-Y';
-
-
-    public function __construct($n, $a, $t, $d, $s)
+    public function __construct(int $id, string $nom, int $artiste, string $type, string $date, bool $status)
     {
-        $this->nom = intval($n);
-        $this->artiste = intval($a);
-        $this->type = $t;
-        $this->date = DateTime::createFromFormat($this->format, $d);
-        $this->status = boolval($s);
+        $this->id = $id;
+        $this->nom = $nom;
+        $this->artiste = $artiste;
+        $this->type = $type;
+        $this->date = $date;
+        $this->status = $status;
     }
 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
-        
     }
 
-    public function getArticleName()
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    public function getNom(): string
     {
         return $this->nom;
     }
 
-    public function getDate()
+    public function setNom(string $nom): void
     {
-        return $this->date;
-        
+        $this->nom = $nom;
     }
 
-    public function getArtiste(): string
+    public function getArtiste(): int
     {
         return $this->artiste;
     }
-    
+
+    public function setArtiste(int $artiste): void
+    {
+        $this->artiste = $artiste;
+    }
+
     public function getType(): string
     {
         return $this->type;
     }
-    
-    public function getStatus(): bool
+
+    public function setType(string $type): void
+    {
+        $this->type = $type;
+    }
+
+    public function getDate(): string
+    {
+        return $this->date;
+    }
+
+    public function setDate(string $date): void
+    {
+        $this->date = $date;
+    }
+
+    public function isStatus(): bool
     {
         return $this->status;
     }
+
+    public function setStatus(bool $status): void
+    {
+        $this->status = $status;
+    }
+
+
 }
