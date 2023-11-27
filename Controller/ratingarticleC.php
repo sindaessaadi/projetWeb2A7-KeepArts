@@ -1,12 +1,12 @@
 <?php
 include '../config.php';
-include '../Model/ratingarticle.php';
+include '../Model/article.php';
 
-class ratingarticleC
+class RatingC
 {
-    public function listratings()
+    public function listRatings()
     {
-        $sql = "SELECT * FROM rating_article";
+        $sql = "SELECT * FROM ratings";
         $db = config::getConnexion();
         try {
             $liste = $db->query($sql);
@@ -16,9 +16,9 @@ class ratingarticleC
         }
     }
 
-    function deleterating($id)
+    function deleteRating($id)
     {
-        $sql = "DELETE FROM rating_article WHERE id=:id";
+        $sql = "DELETE FROM ratings WHERE id=:id";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
         $req->bindValue(':id', $id);
@@ -26,57 +26,51 @@ class ratingarticleC
         try {
             $req->execute();
         } catch (Exception $e) {
-            
             die('Error:' . $e->getMessage());
         }
     }
 
-    function addrating($ratingarticle)
+    function addRating($rating)
     {
-        $sql = "INSERT INTO rating_article
-        VALUES (NULL, :id,:ar,:m,:val)";
+        $sql = "INSERT INTO ratings (article_id, rating) VALUES (:article_id, :rating)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute([
-                'id' => $ratingarticle->getId(),
-                'ar' => $ratingarticle->getarticleid(),
-                'm' => $ratingarticle->getmsg(),
-                'val' => $ratingarticle->getvalue()
+                'article_id' => $rating->getArticleId(),
+                'rating' => $rating->getRating(),
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
         }
     }
 
-    function updaterating($ratingarticle, $id)
+    function updateRating($rating, $id)
     {
-        $sql = "UPDATE ratingarticle SET id=:id,ar=:ar,m=:m,val=:val WHERE id=:id";
+        $sql = "UPDATE ratings SET article_id=:article_id, rating=:rating WHERE id=:id";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
-            $query->execute(array(
+            $query->execute([
                 'id' => $id,
-                'id' => $ratingarticle->getId(),
-                'ar' => $ratingarticle->getarticleid(),
-                'm' => $ratingarticle->getmsg(),
-                'val' => $ratingarticle->getvalue()
-
-                ));
-                } catch (PDOException $e) {
-                    echo   $e -> getMessage ();
-                    }
+                'article_id' => $rating->getArticleId(),
+                'rating' => $rating->getRating(),
+            ]);
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        }
     }
 
-    function showrating($id)
+    function showRating($id)
     {
-        $sql = "SELECT * from rating_article where id = $id";
+        $sql = "SELECT * FROM ratings WHERE id = $id";
         $db = config::getConnexion();
         try {
             $liste = $db->query($sql);
             return $liste;
         } catch (PDOException $e) {
-            die("erreur" . $e->getMessage());
-        } 
+            die("Error: " . $e->getMessage());
+        }
     }
 }
+?>
