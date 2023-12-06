@@ -1,18 +1,21 @@
 <?php
+
 class Client
 {
     private ?int $idClient = null;
     private ?string $nom = null;
     private ?string $prenom = null;
     private ?string $email = null;
-    public function __construct($id = null, $n, $p, $a)
+    private  $iduser = null;
+ 
+    public function __construct($iduser, $n, $p, $a, $id = null)
     {
         $this->idClient = $id;
         $this->nom = $n;
         $this->prenom = $p;
         $this->email = $a;
+        $this->iduser = $iduser;
     }
-
 
     public function getIdClient()
     {
@@ -60,4 +63,16 @@ class Client
 
         return $this;
     }
+    public function getIdUser()
+    {
+        return $this->iduser;
+    }
+
+    public function setIdUser($iduser)
+    {
+        $this->iduser = $iduser;
+
+        return $this;
+    }
+   
 }

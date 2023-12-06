@@ -1,13 +1,16 @@
 <?php
+
 class Ticket
 {
     private ?int $idTicket = null;
+    private ?int $idEvent = null;
     private ?string $dateexpiration = null;
     private ?string $cvv = null;
     private ?string $numcarte = null;
-    public function __construct($id = null, $n, $p, $a)
+    public function __construct($id = null,$idE, $n, $p, $a)
     {
         $this->idTicket = $id;
+        $this->idEvent = $idE;
         $this->dateexpiration = $n;
         $this->cvv = $p;
         $this->numcarte = $a;
@@ -19,6 +22,10 @@ class Ticket
         return $this->idTicket;
     }
 
+    public function getIdEvent()
+    {
+        return $this->idEvent;
+    }
 
     public function getDateexpiration()
     {
@@ -60,4 +67,6 @@ class Ticket
 
         return $this;
     }
+
+   
 }
